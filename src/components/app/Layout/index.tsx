@@ -9,9 +9,9 @@ type Props = {
 
 export const Layout: FC<Props> = ({ title, color, children }) => {
   return (
-    <div className="layout py-10 pl-14 relative">
+    <div className="layout py-10 pl-14 relative ">
       <Header />
-      <main className="z-100">{children}</main>
+      <main className="flex">{children}</main>
     </div>
   );
 };
