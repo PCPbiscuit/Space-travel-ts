@@ -22,7 +22,7 @@ export const Header = () => {
           <Link href={link.href} key={link.name}>
             <a
               className={cx(
-                'space-x-3 flex items-center text-white tracking-[0.16875em] h-full border-b-[3px] border-transparent hover:border-white transition-colors duration-200',
+                'space-x-3 flex items-center text-white tracking-widest h-full border-b-[3px] border-transparent hover:border-white transition-colors duration-200',
                 link.href == pathname && 'border-white',
               )}
             >
