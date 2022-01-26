@@ -15,11 +15,11 @@ class PageDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel='icon' href='/favicon.ico' />
-          <link rel='preconnect' href='https://fonts.googleapis.com' />
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href='https://fonts.googleapis.com/css2?family=Bellefair&display=swap'
-            rel='stylesheet'
+            href="https://fonts.googleapis.com/css2?family=Barlow&family=Bellefair&display=swap"
+            rel="stylesheet"
           />
         </Head>
         <body>
