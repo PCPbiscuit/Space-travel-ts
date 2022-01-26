@@ -17,10 +17,25 @@ main {
   background-image: url('../../public/home-desktop.jpg');
   background-size: cover;
   background-position: center;
+  .home {
+    background-image: url('../../public/home-desktop.jpg');
+  }
 }
 
-.layout .home {
-  background-image: url('../../public/home-desktop.jpg');
+header {
+  .links {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      height: 1px;
+      background-color: white;
+      opacity: 0.25;
+      width: 100%;
+      right: calc(100% - 2rem);
+      bottom: 50%;
+    }
+  }
 }
 
 a {
