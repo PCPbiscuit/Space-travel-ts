@@ -18,6 +18,9 @@ module.exports = {
       letterSpacing: {
         widest: '0.16875em',
       },
+      ringWidth: {
+        45: '45px',
+      },
     },
   },
   plugins: [],
