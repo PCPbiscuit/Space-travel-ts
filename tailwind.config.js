@@ -13,6 +13,10 @@ module.exports = {
         large: '6.25rem',
         big: '3.5rem',
         medium: '2rem',
+        semi: '1.75rem',
+      },
+      letterSpacing: {
+        widest: '0.16875em',
       },
     },
   },
