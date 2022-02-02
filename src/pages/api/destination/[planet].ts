@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const planetInfo = [
+const spaceObjectsInfo = [
   {
     name: 'moon',
     distance: '384,400 km',
@@ -40,6 +40,6 @@ export default function handler(
   res: NextApiResponse<Planet | undefined>,
 ) {
   const { planet } = req.query;
-  const currentPlanetInfo = planetInfo.find(p => p.name == planet);
+  const currentPlanetInfo = spaceObjectsInfo.find(p => p.name == planet);
   res.status(200).json(currentPlanetInfo);
 }
