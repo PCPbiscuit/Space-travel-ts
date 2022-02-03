@@ -20,8 +20,8 @@ main {
   background-image: url('../../public/home-desktop.jpg');
   background-size: cover;
   background-position: center;
-  .home {
-    background-image: url('../../public/home-desktop.jpg');
+  &.destination {
+    background-image: url('../../public/destination.jpg');
   }
 }
 
