@@ -1,22 +1,58 @@
-import type { NextPage } from 'next';
+import type { NextPage, GetStaticPaths, GetStaticProps } from 'next';
+import Image from 'next/image';
+import { http } from 'src/utils';
+import mars from 'public/mars.png';
+import moon from 'public/moon.png';
+import europa from 'public/europa.png';
+import titan from 'public/titan.png';
 
-const Destination: NextPage = () => {
+type Planet = {
+  name: string;
+  distance: string;
+  time: string;
+  info: string;
+};
+
+type Props = {
+  planet: Planet;
+  planets: Planet[];
+};
+
+const planetsPics = [
+  { name: 'moon', value: moon },
+  { name: 'mars', value: mars },
+  { name: 'europa', value: europa },
+  { name: 'titan', value: titan },
+];
+
+export const getStaticProps: GetStaticProps = async context => {
+  const planet = await http.get(`/destination/${context.params?.planet}`);
+  const planets = await http.get(`/destination`);
+  return {
+    props: { planet, planets },
+  };
+};
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await http.get('/destination');
+  const paths = res.map((p: { id: number; name: string }) => ({
+    params: { planet: p.name },
+  }));
+  return {
+    paths: paths,
+    fallback: false,
+  };
+};
+
+const Destination: NextPage<Props> = props => {
+  const image = planetsPics.find(p => p.name == props.planet.name)?.value;
   return (
-    <div className="flex px-28 pb-28 self-end justify-between w-full">
-      <div className="flex flex-col space-y-6">
-        <h2 className="text-blue text-semi tracking-widest">
-          SO, YOU WANT TO TRAVEL TO
-        </h2>
-        <h1 className="text-largest text-white">DESTINATION</h1>
-        <p className="text-blue text-lg whitespace-pre-line">
-          {` Let’s face it; if you want to go to space, you might as well 
-         genuinely go to outer space and not hover kind of on the 
-         edge of it. Well sit back, and relax because we’ll give you a 
-         truly out of this world experience!`}
-        </p>
+    <div className="flex flex-col px-28 pt-20 w-full space-y-16">
+      <div className="flex space-x-7 items-center text-semi text-white tracking-widest uppercase">
+        <h2 className="opacity-25 font-bold">01</h2>
+        <h2>Pick your destination</h2>
       </div>
-      <div className="w-60 h-60 rounded-full bg-white flex items-center tracking-wider justify-center text-center text-medium self-end cursor-pointer text-blue-dark ring-45 ring-transparent hover:ring-white/10 transition-all duration-200">
-        EXPLORE
+      <div className="flex items-center pl-16">
+        <Image alt="Celestial object" src={image || ''} />
       </div>
     </div>
   );
