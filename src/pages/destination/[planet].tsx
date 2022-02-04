@@ -6,7 +6,7 @@ import moon from 'public/moon.png';
 import europa from 'public/europa.png';
 import titan from 'public/titan.png';
 
-type Planet = {
+type Celestial = {
   name: string;
   distance: string;
   time: string;
@@ -14,11 +14,11 @@ type Planet = {
 };
 
 type Props = {
-  planet: Planet;
-  planets: Planet[];
+  celestial: Celestial;
+  celestials: Celestial[];
 };
 
-const planetsPics = [
+const celestialsPics = [
   { name: 'moon', value: moon },
   { name: 'mars', value: mars },
   { name: 'europa', value: europa },
@@ -26,10 +26,10 @@ const planetsPics = [
 ];
 
 export const getStaticProps: GetStaticProps = async context => {
-  const planet = await http.get(`/destination/${context.params?.planet}`);
-  const planets = await http.get(`/destination`);
+  const celestial = await http.get(`/destination/${context.params?.planet}`);
+  const celestials = await http.get(`/destination`);
   return {
-    props: { planet, planets },
+    props: { celestial, celestials },
   };
 };
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -44,15 +44,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const Destination: NextPage<Props> = props => {
-  const image = planetsPics.find(p => p.name == props.planet.name)?.value;
+  const image = celestialsPics.find(p => p.name == props.celestial.name)?.value;
   return (
     <div className="flex flex-col px-28 pt-20 w-full space-y-16">
       <div className="flex space-x-7 items-center text-semi text-white tracking-widest uppercase">
         <h2 className="opacity-25 font-bold">01</h2>
         <h2>Pick your destination</h2>
       </div>
-      <div className="flex items-center pl-16">
+      <div className="flex items-center pl-16 justify-between">
         <Image alt="Celestial object" src={image || ''} />
+        <div className="flex flex-col h-full">
+          <div className="flex space-x-9 text-white">
+            {celestialsPics.map(celestial => (
+              <span key={celestial.name}>{celestial.name}</span>
+            ))}
+          </div>
+          <h2>{props.celestial.name}</h2>
+        </div>
       </div>
     </div>
   );
