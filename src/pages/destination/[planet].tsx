@@ -59,9 +59,11 @@ const Destination: NextPage<Props> = props => {
         <div className="flex flex-col h-full">
           <div className="flex space-x-9 text-white text-lg uppercase">
             {celestialsPics.map(celestial => (
-              <Link href={`/destination/${celestial.name}`}>
+              <Link
+                href={`/destination/${celestial.name}`}
+                key={celestial.name}
+              >
                 <a
-                  key={celestial.name}
                   className={cx(
                     'py-4 hover:border-white/50 transition-colors duration-200 border-b-[3px] border-transparent tracking-widest cursor-pointer',
                     props.celestial.name == celestial.name
