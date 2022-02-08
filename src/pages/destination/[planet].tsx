@@ -1,5 +1,8 @@
 import type { NextPage, GetStaticPaths, GetStaticProps } from 'next';
+import Link from 'next/link';
+import cx from 'classnames';
 import Image from 'next/image';
+
 import { http } from 'src/utils';
 import mars from 'public/mars.png';
 import moon from 'public/moon.png';
@@ -54,9 +57,21 @@ const Destination: NextPage<Props> = props => {
       <div className="flex items-center pl-16 justify-between">
         <Image alt="Celestial object" src={image || ''} />
         <div className="flex flex-col h-full">
-          <div className="flex space-x-9 text-white">
+          <div className="flex space-x-9 text-white text-lg uppercase">
             {celestialsPics.map(celestial => (
-              <span key={celestial.name}>{celestial.name}</span>
+              <Link href={`/destination/${celestial.name}`}>
+                <a
+                  key={celestial.name}
+                  className={cx(
+                    'py-4 hover:border-white/50 transition-colors duration-200 border-b-[3px] border-transparent tracking-widest cursor-pointer',
+                    props.celestial.name == celestial.name
+                      ? 'border-white'
+                      : 'border-transparent',
+                  )}
+                >
+                  {celestial.name}
+                </a>
+              </Link>
             ))}
           </div>
           <h2>{props.celestial.name}</h2>
