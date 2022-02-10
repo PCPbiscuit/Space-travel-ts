@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const Destination: NextPage<Props> = ({ celestial, celestials }) => {
+const Destination: NextPage<Props> = ({ celestial }) => {
   const image = celestialsPics.find(p => p.name == celestial.name)?.value;
   return (
     <div className="flex flex-col px-28 pt-20 w-full space-y-16">
