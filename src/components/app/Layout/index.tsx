@@ -4,12 +4,7 @@ import { useRouter } from 'next/router';
 
 import { Header } from '../';
 
-type Props = {
-  title?: string;
-  color?: string;
-};
-
-export const Layout: FC<Props> = ({ title, color, children }) => {
+export const Layout: FC = ({ children }) => {
   const { pathname } = useRouter();
   const page = pathname.split('/')[1];
   return (
