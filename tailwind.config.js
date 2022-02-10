@@ -7,6 +7,7 @@ module.exports = {
           DEFAULT: '#D0D6F9',
           dark: '#0B0D17',
         },
+        darkish: '#383B4B',
       },
       fontSize: {
         largest: '9.375rem',
