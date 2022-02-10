@@ -23,7 +23,7 @@ export const Header = () => {
             <a
               className={cx(
                 'space-x-3 flex items-center text-white tracking-widest h-full border-b-[3px] border-transparent hover:border-white/50 transition-colors duration-200',
-                link.href == pathname && 'border-white',
+                link.href.includes(pathname.split('/')[1]) && 'border-white',
               )}
             >
               <p className="font-bold">{'0' + index}</p>
