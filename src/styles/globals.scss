@@ -24,6 +24,12 @@ main {
   &.destination {
     background-image: url('../../public/destination.jpg');
   }
+  &.crew {
+    background-image: url('../../public/crew.jpg');
+  }
+  &.technology {
+    background-image: url('../../public/technology.jpg');
+  }
 }
 
 header {
