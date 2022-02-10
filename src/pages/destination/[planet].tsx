@@ -46,8 +46,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const Destination: NextPage<Props> = props => {
-  const image = celestialsPics.find(p => p.name == props.celestial.name)?.value;
+const Destination: NextPage<Props> = ({ celestial, celestials }) => {
+  const image = celestialsPics.find(p => p.name == celestial.name)?.value;
   return (
     <div className="flex flex-col px-28 pt-20 w-full space-y-16">
       <div className="flex space-x-7 items-center text-semi text-white tracking-widest uppercase">
@@ -58,28 +58,34 @@ const Destination: NextPage<Props> = props => {
         <Image alt="Celestial object" src={image || ''} objectFit="contain" />
         <div className="flex flex-col h-full mb-12 w-1/2 2xl:w-1/3">
           <div className="flex space-x-9 text-white text-base uppercase">
-            {celestialsPics.map(celestial => (
-              <Link
-                href={`/destination/${celestial.name}`}
-                key={celestial.name}
-              >
+            {celestialsPics.map(pic => (
+              <Link href={`/destination/${pic.name}`} key={pic.name}>
                 <a
                   className={cx(
                     'py-4 hover:border-white/50 transition-colors duration-200 border-b-[3px] border-transparent tracking-widest cursor-pointer',
-                    props.celestial.name == celestial.name
+                    celestial.name == pic.name
                       ? 'border-white'
                       : 'border-transparent',
                   )}
                 >
-                  {celestial.name}
+                  {pic.name}
                 </a>
               </Link>
             ))}
           </div>
-          <h1 className="text-white text-large uppercase">
-            {props.celestial.name}
-          </h1>
-          <p className="text-blue text-lg">{props.celestial.info}</p>
+          <h1 className="text-white text-large uppercase">{celestial.name}</h1>
+          <p className="text-blue text-lg">{celestial.info}</p>
+          <div className="w-full h-px bg-darkish mt-14 mb-7" />
+          <div className="flex items-center space-x-20 uppercase">
+            <div className="flex flex-col space-y-3">
+              <p>avg. distance</p>
+              <span>{celestial.distance}</span>
+            </div>
+            <div className="flex flex-col space-y-3">
+              <p>est. travel time</p>
+              <span>{celestial.time}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
