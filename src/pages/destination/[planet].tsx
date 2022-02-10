@@ -54,10 +54,10 @@ const Destination: NextPage<Props> = props => {
         <h2 className="opacity-25 font-bold">01</h2>
         <h2>Pick your destination</h2>
       </div>
-      <div className="flex items-center pl-16 justify-between">
-        <Image alt="Celestial object" src={image || ''} />
-        <div className="flex flex-col h-full">
-          <div className="flex space-x-9 text-white text-lg uppercase">
+      <div className="flex items-center pl-16 space-x-28 2xl:space-x-56">
+        <Image alt="Celestial object" src={image || ''} objectFit="contain" />
+        <div className="flex flex-col h-full mb-12 w-1/2 2xl:w-1/3">
+          <div className="flex space-x-9 text-white text-base uppercase">
             {celestialsPics.map(celestial => (
               <Link
                 href={`/destination/${celestial.name}`}
@@ -76,7 +76,10 @@ const Destination: NextPage<Props> = props => {
               </Link>
             ))}
           </div>
-          <h2>{props.celestial.name}</h2>
+          <h1 className="text-white text-large uppercase">
+            {props.celestial.name}
+          </h1>
+          <p className="text-blue text-lg">{props.celestial.info}</p>
         </div>
       </div>
     </div>
