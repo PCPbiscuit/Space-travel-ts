@@ -78,12 +78,14 @@ const Destination: NextPage<Props> = ({ celestial, celestials }) => {
           <div className="w-full h-px bg-darkish mt-14 mb-7" />
           <div className="flex items-center space-x-20 uppercase">
             <div className="flex flex-col space-y-3">
-              <p>avg. distance</p>
-              <span>{celestial.distance}</span>
+              <p className="text-blue tracking-widest text-sm">avg. distance</p>
+              <span className="text-white text-semi">{celestial.distance}</span>
             </div>
             <div className="flex flex-col space-y-3">
-              <p>est. travel time</p>
-              <span>{celestial.time}</span>
+              <p className="text-blue tracking-widest text-sm">
+                est. travel time
+              </p>
+              <span className="text-white text-semi">{celestial.time}</span>
             </div>
           </div>
         </div>
