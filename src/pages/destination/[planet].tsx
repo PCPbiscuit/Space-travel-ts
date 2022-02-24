@@ -4,10 +4,6 @@ import cx from 'classnames';
 import Image from 'next/image';
 
 import { http } from 'src/utils';
-import mars from 'public/mars.png';
-import moon from 'public/moon.png';
-import europa from 'public/europa.png';
-import titan from 'public/titan.png';
 
 type Celestial = {
   name: string;
