@@ -3,15 +3,7 @@ import Link from 'next/link';
 import cx from 'classnames';
 import Image from 'next/image';
 
-import { http } from 'src/utils';
-
-type Celestial = {
-  name: string;
-  distance: string;
-  time: string;
-  info: string;
-  image: string;
-};
+import { Celestial, currentPlanetInfo, spaceObjectsInfo } from 'src/data';
 
 type Props = {
   celestial: Celestial;
@@ -19,15 +11,13 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps = async context => {
-  const celestial = await http.get(`/destination/${context.params?.planet}`);
-  const celestials = await http.get(`/destination`);
+  const celestial = currentPlanetInfo(context?.params?.planet);
   return {
-    props: { celestial, celestials },
+    props: { celestial, celestials: spaceObjectsInfo },
   };
 };
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await http.get('/destination');
-  const paths = res.map((p: { id: number; name: string }) => ({
+  const paths = spaceObjectsInfo.map((p: { id: number; name: string }) => ({
     params: { planet: p.name },
   }));
   return {
