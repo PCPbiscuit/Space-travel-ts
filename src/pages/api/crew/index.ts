@@ -41,6 +41,7 @@ type Member = {
   name: string;
   description: string;
   job: string;
+  image: string;
 };
 
 export default function handler(
