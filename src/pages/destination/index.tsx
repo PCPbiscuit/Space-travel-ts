@@ -1,15 +1,12 @@
 import type { NextPage } from 'next';
-
-export async function getStaticProps() {
-  return {
-    redirect: {
-      destination: '/destination/moon',
-      permanent: false,
-    },
-  };
-}
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const Destination: NextPage = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/destination/moon');
+  });
   return null;
 };
 
