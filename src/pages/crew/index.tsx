@@ -1,28 +1,22 @@
 import type { NextPage, GetStaticProps } from 'next';
-import { http } from 'src/utils';
+
+import { Member, crewMembersInfo } from 'src/data';
 
 export const getStaticProps: GetStaticProps = async () => {
-  const crew = await http.get(`/crew`);
   return {
-    props: { crew },
+    props: { crew: crewMembersInfo },
   };
-};
-
-type Member = {
-  name: string;
-  job: string;
-  description: string;
 };
 
 type Props = {
   crew: Member[];
 };
 
-const Crew: NextPage<Props> = ({ crew }) => {
+const Crew: NextPage<Props> = () => {
   return (
     <div className="flex flex-col px-28 pt-20 w-full space-y-16">
       <div className="flex space-x-7 items-center text-semi text-white tracking-widest uppercase">
-        <h2 className="opacity-25 font-bold">01</h2>
+        <h2 className="opacity-25 font-bold">02</h2>
         <h2>Meet your crew</h2>
       </div>
     </div>
